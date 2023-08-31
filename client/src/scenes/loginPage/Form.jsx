@@ -16,6 +16,7 @@ import { setLogin } from "state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
 import Progress from "components/Progress";
+import axios from "axios";
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
@@ -64,31 +65,30 @@ const Form = () => {
     }
     formData.append("picturePath", values.picture.name);
 
-    const savedUserResponse = await fetch(
-      "http://simple-soc-media-pf.onrender.com:8200/auth/register",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
-    const savedUser = await savedUserResponse.json();
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+
+    const { data } = await axios.post("/auth/register", formData, config);
+
     onSubmitProps.resetForm();
 
-    if (savedUser) {
+    if (data) {
       setPageType("login");
     }
   };
   const [loading, setLoading] = useState(false);
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch(
-      "http://simple-soc-media-pf.onrender.com:8200/auth/login",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      }
-    );
-    const loggedIn = await loggedInResponse.json();
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+
+    const { loggedIn } = await axios.post("/auth/login", values, config);
+
     onSubmitProps.resetForm();
     if (loggedIn) {
       dispatch(
