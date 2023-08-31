@@ -77,29 +77,62 @@ const Form = () => {
 
     if (data) {
       setPageType("login");
+    } else {
+      alert("Invalid User!");
     }
   };
   const [loading, setLoading] = useState(false);
+
   const login = async (values, onSubmitProps) => {
-    const config = {
-      headers: {
-        "Content-type": "application/json",
-      },
-    };
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
 
-    const { loggedIn } = await axios.post("/auth/login", values, config);
+      const val = JSON.stringify(values);
 
-    onSubmitProps.resetForm();
-    if (loggedIn) {
-      dispatch(
-        setLogin({
-          user: loggedIn.user,
-          token: loggedIn.token,
-        })
-      );
-      navigate("/home");
+      const { data } = await axios.post("/auth/login", val, config);
+
+      onSubmitProps.resetForm();
+      if (data) {
+        dispatch(
+          setLogin({
+            user: data.user,
+            token: data.token,
+          })
+        );
+        navigate("/home");
+      } else {
+        alert("Invalid User!");
+      }
+    } catch (error) {
+      alert("Invalid User!");
     }
   };
+
+  // const login = async (values, onSubmitProps) => {
+  //   const loggedInResponse = await fetch(
+  //     "http://simple-soc-media-pf.onrender.com:8200/auth/login",
+  //     {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(values),
+  //     }
+  //   );
+  //   const loggedIn = await loggedInResponse.json();
+  //   onSubmitProps.resetForm();
+  //   if (loggedIn) {
+  //     dispatch(
+  //       setLogin({
+  //         user: loggedIn.user,
+  //         token: loggedIn.token,
+  //       })
+  //     );
+  //     navigate("/home");
+  //   }
+  // };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
     setLoading(true);
