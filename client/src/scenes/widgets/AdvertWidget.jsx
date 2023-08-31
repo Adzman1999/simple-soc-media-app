@@ -11,25 +11,26 @@ const AdvertWidget = () => {
   return (
     <WidgetWrapper>
       <FlexBetween>
-        <Typography color={dark} variant="h5" fontWeight="500">
+        <Typography color={dark} variant='h5' fontWeight='500'>
           Sponsored Website
         </Typography>
         <Typography color={medium}>More Ad</Typography>
       </FlexBetween>
       <img
-        width="100%"
-        height="auto"
-        alt="advert"
-        src="http://localhost:8200/assets/info4.jpeg"
+        width='100%'
+        height='auto'
+        alt='advert'
+        src='/assets/info4.jpeg'
         style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
       />
       <FlexBetween>
         <Typography color={main}>Visit this website</Typography>
         <Typography color={medium}>mhan-mhan.com</Typography>
       </FlexBetween>
-      <Typography color={medium} m="0.5rem 0">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, 
-        repellat dolorem quia quos illo earum ipsam similique assumenda vitae dicta!
+      <Typography color={medium} m='0.5rem 0'>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas,
+        repellat dolorem quia quos illo earum ipsam similique assumenda vitae
+        dicta!
       </Typography>
     </WidgetWrapper>
   );
