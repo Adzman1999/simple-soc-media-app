@@ -13,6 +13,7 @@ import WidgetWrapper from "components/WidgetWrapper";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import { InstagramLogo, TiktokLogo, YoutubeLogo } from "phosphor-react";
 

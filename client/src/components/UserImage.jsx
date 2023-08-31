@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import axios from "axios";
 
 const UserImage = ({ image, size = "60px" }) => {
   return (
