@@ -13,7 +13,7 @@ import postRoutes from "./routes/posts.js";
 import { register } from "./controllers/auth.js";
 import { createPost } from "./controllers/posts.js";
 import { verifyToken } from "./middleware/auth.js";
-import connectDB from "./config/Database.js"
+import connectDB from "./config/Database.js";
 
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);
@@ -50,6 +50,12 @@ app.use("/posts", postRoutes);
 
 dotenv.config({
   path: "./config/.env",
+});
+
+// Deployment
+app.use(express.static(path.join(__dirname, "../client/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
 });
 
 // Connect to Database
