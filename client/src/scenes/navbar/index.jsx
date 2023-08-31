@@ -115,10 +115,10 @@ const Navbar = () => {
           {isNonMobileScreens ? (
             <FlexBetween gap='2rem'>
               <IconButton onClick={() => dispatch(setMode())}>
-                {theme.palette.mode === "dark" ? (
-                  <DarkModeOutlined sx={{ fontSize: "25px" }} />
-                ) : (
+                {theme.palette.mode === "light" ? (
                   <LightModeOutlined sx={{ color: dark, fontSize: "25px" }} />
+                ) : (
+                  <DarkModeOutlined sx={{ fontSize: "25px" }} />
                 )}
               </IconButton>
               <IconButton>
@@ -135,7 +135,7 @@ const Navbar = () => {
                 aria-haspopup='true'
                 onClick={handleProfileMenuOpen}
                 color='inherit'>
-                <AccountCircle sx={{ fontSize: "25px" }}/>
+                <AccountCircle sx={{ fontSize: "25px" }} />
               </IconButton>
             </FlexBetween>
           ) : (
